@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserToUserEntityMapper {
     public UserEntity execute(User user) {
-        return null;
+        UserEntity entity = new UserEntity();
+        entity.setEmail(user.getEmail());
+        return entity;
     }
 }

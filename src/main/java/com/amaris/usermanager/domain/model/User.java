@@ -75,4 +75,18 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public User() {
+    }
+
+    public User(Long id, String name, String email, String password, Instant birthday, Integer phone, Profile profile, String status) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.profile = profile;
+        this.status = status;
+    }
 }

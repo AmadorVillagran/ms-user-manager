@@ -1,0 +1,32 @@
+-- Create "profile" table
+CREATE TABLE profile (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    description VARCHAR
+);
+
+-- Create "user" table
+CREATE TABLE "user" (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR,
+    email VARCHAR,
+    password VARCHAR,
+    birthday TIMESTAMP,
+    phone NUMERIC,
+    profile_id INT REFERENCES profile(id)
+);
+
+INSERT INTO profile (id, name, description) VALUES
+(1, 'ADMIN', 'Puede crear, listar, leer, actualizar y eliminar'),
+(2, 'MODIFIER', 'Puede crear, listar, leer y actualizar'),
+(3, 'OBSERVER', 'Puede listar y leer');
+
+ALTER TABLE "user"
+ADD COLUMN lastLogin DATE;
+
+INSERT INTO "user" (name, email, password, phone, profile_id)
+VALUES ('master', 'master@email.com', '12345', '12345', 1);
+
+ALTER TABLE "user"
+ADD COLUMN status VARCHAR(50);
+

@@ -1,5 +1,7 @@
 package com.amaris.usermanager.infrastructure.controller;
 
+import com.amaris.usermanager.domain.port.input.GetUserById;
+import com.amaris.usermanager.infrastructure.controller.mapper.UserToUserApiMapper;
 import com.amaris.usermanager.infrastructure.controller.model.UserApi;
 import com.amaris.usermanager.infrastructure.repository.model.UserEntity;
 import com.amaris.usermanager.domain.usecase.GetUserByIdService;
@@ -14,8 +16,14 @@ public class GetUserByIdController {
 
     private final GetUserByIdService getUserByIdService;
 
-    public GetUserByIdController(GetUserByIdService getUserByIdService) {
+    private final GetUserById useCase;
+
+    private final UserToUserApiMapper mapper;
+
+    public GetUserByIdController(GetUserByIdService getUserByIdService, GetUserById useCase, UserToUserApiMapper mapper) {
         this.getUserByIdService = getUserByIdService;
+        this.useCase = useCase;
+        this.mapper = mapper;
     }
 
     @GetMapping("/user/{userId}")
@@ -23,8 +31,8 @@ public class GetUserByIdController {
 
         UserEntity user = getUserByIdService.execute(userId);
 
-        UserApi res = new UserApi();
-        res.setEmail(userId.toString());
+        UserApi res = mapper.execute(useCase.execute(userId));
+
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 

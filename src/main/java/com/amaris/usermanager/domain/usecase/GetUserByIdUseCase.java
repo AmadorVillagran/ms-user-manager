@@ -13,6 +13,6 @@ public class GetUserByIdUseCase implements GetUserById {
 
     @Override
     public User execute(Long id) {
-        return null;
+        return repository.execute(id);
     }
 }

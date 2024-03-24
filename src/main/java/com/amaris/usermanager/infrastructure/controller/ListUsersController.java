@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class ListUsersController {
@@ -28,8 +29,17 @@ public class ListUsersController {
         usApi.setEmail("23432");
         UserList res = new UserList();
         res.setUsers(new ArrayList<>());
-        res.getUsers().add(usApi);
+//        res.getUsers().add(usApi);
         List<User> lts = listUser.execute();
+        List<UserApi> usersApi = lts.stream()
+                .map(u -> new UserApi(
+                        u.getId(),
+                        u.getName(),
+                        u.getEmail(),
+                        (u.getBirthday()!=null)? u.getBirthday().toString():null,
+                        (u.getPhone()!=null)?u.getPhone().toString():null))
+                .collect(Collectors.toList());
+        res.getUsers().addAll(usersApi);
         return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }

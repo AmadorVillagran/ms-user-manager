@@ -7,6 +7,17 @@ public class UserApi {
     private String birthday;
     private String phone;
 
+    public UserApi() {
+    }
+
+    public UserApi(Long id, String name, String email, String birthday, String phone) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
+        this.phone = phone;
+    }
+
     public Long getId() {
         return id;
     }

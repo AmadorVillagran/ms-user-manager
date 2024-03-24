@@ -18,6 +18,9 @@ public class ListUsersRepository {
 
     public List<User> execute(){
         List<UserEntity> usersEntity = repository.findAll();
-        return usersEntity.stream().map(u -> new User()).collect(Collectors.toList());
+        return usersEntity.stream().map(u -> new User(u.getId(),
+                u.getName(),u.getEmail(), u.getPassword(),
+                u.getBirthday(),u.getPhone(),null,
+                u.getStatus())).collect(Collectors.toList());
     }
 }
