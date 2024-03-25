@@ -14,8 +14,8 @@ public class BeanConfig {
         return new CreateUserUseCase(repository);
     }
     @Bean
-    public DeleteUser deleteUser(DeleteRepository repository){
-        return new DeleteUserUseCase(repository);
+    public DeleteUser deleteUser(DeleteRepository repository, GetUserById getUserById){
+        return new DeleteUserUseCase(repository, getUserById);
     }
     @Bean
     public GetUserById getUserById(GetByIdUserRepository repository){
@@ -28,5 +28,10 @@ public class BeanConfig {
     @Bean
     public UpdateUser updateUser(UpdateRepository repository){
         return new UpdateUserUseCase(repository);
+    }
+
+    @Bean
+    public GetProfileById getProfileById(GetProfileByIdRepository repository){
+        return new GetProfileByIdUseCase(repository);
     }
 }

@@ -5,6 +5,15 @@ public class Profile {
     private String name;
     private String description;
 
+    public Profile() {
+    }
+
+    public Profile(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

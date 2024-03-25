@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 public class ProfileEntityToProfileMapper {
     public Profile execute(ProfileEntity profile){
         Profile pr = new Profile();
-        pr.setId(pr.getId());
+        pr.setId(profile.getId());
+        pr.setName(profile.getName());
+        pr.setDescription(profile.getDescription());
         return pr;
     }
 }

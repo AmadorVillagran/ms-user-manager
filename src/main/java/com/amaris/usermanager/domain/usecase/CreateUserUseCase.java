@@ -2,6 +2,7 @@ package com.amaris.usermanager.domain.usecase;
 
 import com.amaris.usermanager.domain.model.User;
 import com.amaris.usermanager.domain.port.input.CreateUser;
+import com.amaris.usermanager.domain.port.input.GetProfileById;
 import com.amaris.usermanager.infrastructure.repository.CreateUserRepository;
 
 public class CreateUserUseCase implements CreateUser {
@@ -14,6 +15,7 @@ public class CreateUserUseCase implements CreateUser {
 
     @Override
     public User execute(User user) {
-        return null;
+        user.setStatus("ACTIVE");
+        return repository.execute(user);
     }
 }

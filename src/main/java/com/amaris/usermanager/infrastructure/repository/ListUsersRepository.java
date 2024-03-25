@@ -1,5 +1,6 @@
 package com.amaris.usermanager.infrastructure.repository;
 
+import com.amaris.usermanager.domain.model.Profile;
 import com.amaris.usermanager.domain.model.User;
 import com.amaris.usermanager.infrastructure.repository.jpa.UserRepository;
 import com.amaris.usermanager.infrastructure.repository.model.UserEntity;
@@ -18,9 +19,18 @@ public class ListUsersRepository {
 
     public List<User> execute(){
         List<UserEntity> usersEntity = repository.findAll();
-        return usersEntity.stream().map(u -> new User(u.getId(),
-                u.getName(),u.getEmail(), u.getPassword(),
-                u.getBirthday(),u.getPhone(),null,
-                u.getStatus())).collect(Collectors.toList());
+        return usersEntity.stream()
+                .map(u -> new User(u.getId(),
+                                    u.getName(),
+                                    u.getEmail(),
+                                    u.getPassword(),
+                                    u.getBirthday(),
+                                    u.getPhone(),
+                                    new Profile(
+                                            u.getProfile().getId(),
+                                            u.getProfile().getName(),
+                                            u.getProfile().getDescription()),
+                                    u.getStatus()))
+                .collect(Collectors.toList());
     }
 }

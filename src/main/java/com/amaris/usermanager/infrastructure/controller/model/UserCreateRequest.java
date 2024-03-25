@@ -5,6 +5,8 @@ public class UserCreateRequest {
     private String email;
     private String password;
     private String phone;
+
+    private String birthday;
     private Integer profile;
 
     public String getName() {
@@ -37,6 +39,14 @@ public class UserCreateRequest {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public Integer getProfile() {

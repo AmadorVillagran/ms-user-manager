@@ -13,6 +13,7 @@ public class UpdateUserUseCase implements UpdateUser {
 
     @Override
     public User execute(User user) {
+        repository.execute(user);
         return null;
     }
 }
