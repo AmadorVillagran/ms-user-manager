@@ -11,6 +11,7 @@ public class UserEntityToUserMapper {
         User us = new User();
         us.setId(userEntity.getId());
         us.setName(userEntity.getName());
+        us.setPassword(userEntity.getPassword());
         us.setEmail(userEntity.getEmail());
         us.setPhone(userEntity.getPhone());
         us.setStatus(userEntity.getStatus());
@@ -19,6 +20,8 @@ public class UserEntityToUserMapper {
                 userEntity.getProfile().getName(),
                 userEntity.getProfile().getDescription()));
         us.setBirthday(userEntity.getBirthday());
+        us.setDateCreate(userEntity.getDateCreate());
+        us.setDateModified(userEntity.getDateModified());
         return us;
     }
 }

@@ -4,6 +4,7 @@ import com.amaris.usermanager.domain.model.User;
 import com.amaris.usermanager.domain.port.input.ListUser;
 import com.amaris.usermanager.infrastructure.controller.model.UserApi;
 import com.amaris.usermanager.infrastructure.controller.model.UserList;
+import com.amaris.usermanager.infrastructure.utils.FromInstantToMillisecondString;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,10 @@ public class ListUsersController {
     
     private final ListUser listUser;
 
-    public ListUsersController(ListUser listUser) {
+    private final FromInstantToMillisecondString toMillisecondString;
+    public ListUsersController(ListUser listUser, FromInstantToMillisecondString toMillisecondString) {
         this.listUser = listUser;
+        this.toMillisecondString = toMillisecondString;
     }
 
     @GetMapping("/user")
@@ -36,7 +39,7 @@ public class ListUsersController {
                         u.getId(),
                         u.getName(),
                         u.getEmail(),
-                        (u.getBirthday()!=null)? u.getBirthday().toString():null,
+                        (u.getBirthday()!=null)? toMillisecondString.execute(u.getBirthday()):null,
                         (u.getPhone()!=null)?u.getPhone().toString():null))
                 .collect(Collectors.toList());
         res.getUsers().addAll(usersApi);

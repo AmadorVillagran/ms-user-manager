@@ -21,6 +21,9 @@ public class UserToUserEntityMapper {
         pr.setDescription(user.getProfile().getDescription());
         entity.setProfile(pr);
         entity.setStatus(user.getStatus());
+        entity.setDateCreate(user.getDateCreate());
+        entity.setDateModified(user.getDateModified());
+        entity.setLastLogin(user.getLastLogin());
         return entity;
     }
 }

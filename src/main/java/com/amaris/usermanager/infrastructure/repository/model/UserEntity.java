@@ -2,6 +2,7 @@ package com.amaris.usermanager.infrastructure.repository.model;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.Date;
 
 @Entity
 @Table(name = "user")
@@ -16,6 +17,14 @@ public class UserEntity {
     private Instant birthday;
     private Integer phone;
 
+    @Column(name = "datecreate")
+    private Date dateCreate;
+
+    @Column(name = "datemodified")
+    private Date dateModified;
+
+    @Column(name = "lastlogin")
+    private Date lastLogin;
     @ManyToOne
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private ProfileEntity profile;
@@ -84,5 +93,29 @@ public class UserEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+    public Date getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(Date dateModified) {
+        this.dateModified = dateModified;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 }

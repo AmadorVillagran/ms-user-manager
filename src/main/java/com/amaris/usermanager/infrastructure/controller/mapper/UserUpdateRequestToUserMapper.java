@@ -3,6 +3,7 @@ package com.amaris.usermanager.infrastructure.controller.mapper;
 import com.amaris.usermanager.domain.model.User;
 import com.amaris.usermanager.domain.port.input.GetProfileById;
 import com.amaris.usermanager.infrastructure.controller.model.UserUpdateRequest;
+import com.amaris.usermanager.infrastructure.utils.FromMillisecondStringToInstant;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -11,8 +12,10 @@ import java.time.Instant;
 public class UserUpdateRequestToUserMapper {
     private final GetProfileById getProfileById;
 
-    public UserUpdateRequestToUserMapper(GetProfileById getProfileById) {
+    private final FromMillisecondStringToInstant toInstant;
+    public UserUpdateRequestToUserMapper(GetProfileById getProfileById, FromMillisecondStringToInstant toInstant) {
         this.getProfileById = getProfileById;
+        this.toInstant = toInstant;
     }
 
     public User execute(UserUpdateRequest userUpdateRequest){
@@ -21,13 +24,10 @@ public class UserUpdateRequestToUserMapper {
         us.setName(userUpdateRequest.getName());
         us.setEmail(userUpdateRequest.getEmail());
         us.setPassword(userUpdateRequest.getPassword());
-        us.setBirthday(fromStringToInstance(userUpdateRequest.getBirthday()));
+        us.setBirthday(toInstant.execute(userUpdateRequest.getBirthday()));
         us.setPhone(Integer.valueOf(userUpdateRequest.getPhone()));
         us.setProfile(getProfileById.execute(userUpdateRequest.getProfile().longValue()));
         return us;
     }
 
-    private Instant fromStringToInstance(String dateMillSec){
-        return Instant.ofEpochMilli(Long.parseLong(dateMillSec));
-    }
 }

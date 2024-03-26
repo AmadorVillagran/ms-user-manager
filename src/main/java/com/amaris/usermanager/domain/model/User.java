@@ -1,6 +1,7 @@
 package com.amaris.usermanager.domain.model;
 
 import java.time.Instant;
+import java.util.Date;
 
 public class User {
     private Long id;
@@ -12,6 +13,11 @@ public class User {
     private Profile profile;
     private String status;
 
+    private Date dateCreate;
+
+    private Date dateModified;
+
+    private Date lastLogin;
     public Long getId() {
         return id;
     }
@@ -76,10 +82,41 @@ public class User {
         this.status = status;
     }
 
+    public Date getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Date dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+    public Date getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(Date dateModified) {
+        this.dateModified = dateModified;
+    }
+
+    public Date getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
     public User() {
     }
 
-    public User(Long id, String name, String email, String password, Instant birthday, Integer phone, Profile profile, String status) {
+    public User(Long id,
+                String name,
+                String email,
+                String password,
+                Instant birthday,
+                Integer phone,
+                Profile profile,
+                String status) {
         this.id = id;
         this.name = name;
         this.email = email;
