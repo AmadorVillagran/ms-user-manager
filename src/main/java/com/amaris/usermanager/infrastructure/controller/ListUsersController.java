@@ -35,6 +35,7 @@ public class ListUsersController {
 //        res.getUsers().add(usApi);
         List<User> lts = listUser.execute();
         List<UserApi> usersApi = lts.stream()
+                .filter(u->u.getStatus().contains("ACTIVE"))
                 .map(u -> new UserApi(
                         u.getId(),
                         u.getName(),

@@ -5,6 +5,7 @@ import com.amaris.usermanager.domain.usecase.*;
 import com.amaris.usermanager.infrastructure.repository.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 @Configuration
 public class BeanConfig {
