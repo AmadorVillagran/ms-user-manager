@@ -3,16 +3,16 @@ package com.amaris.usermanager.infrastructure.configuration;
 import com.amaris.usermanager.domain.port.input.*;
 import com.amaris.usermanager.domain.usecase.*;
 import com.amaris.usermanager.infrastructure.repository.*;
+import com.amaris.usermanager.infrastructure.repository.jpa.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
 @Configuration
 public class BeanConfig {
 
     @Bean
-    public CreateUser createUser(CreateUserRepository repository){
-        return new CreateUserUseCase(repository);
+    public CreateUser createUser(CreateUserRepository repository, UserRepository userRepository){
+        return new CreateUserUseCase(repository, userRepository);
     }
     @Bean
     public DeleteUser deleteUser(DeleteRepository repository, GetUserById getUserById){

@@ -27,15 +27,12 @@ public class ListUsersController {
 
     @GetMapping("/user")
     public ResponseEntity<UserList> listUsers() {
-        
-        UserApi usApi = new UserApi();
-        usApi.setEmail("23432");
         UserList res = new UserList();
         res.setUsers(new ArrayList<>());
-//        res.getUsers().add(usApi);
+
         List<User> lts = listUser.execute();
         List<UserApi> usersApi = lts.stream()
-                .filter(u->u.getStatus().contains("ACTIVE"))
+                .filter(u -> u.getStatus().contains("ACTIVE"))
                 .map(u -> new UserApi(
                         u.getId(),
                         u.getName(),

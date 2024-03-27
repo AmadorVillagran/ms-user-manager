@@ -23,7 +23,7 @@ public class UserCreateRequestToUserMapper {
         us.setName(userCreateRequest.getName());
         us.setEmail(userCreateRequest.getEmail());
         us.setPassword(userCreateRequest.getPassword());
-        us.setPhone(Integer.valueOf(userCreateRequest.getPhone()));
+        us.setPhone(userCreateRequest.getPhone());
         us.setBirthday(toInstant.execute(userCreateRequest.getBirthday()));
         us.setProfile(getProfileById.execute(userCreateRequest.getProfile().longValue()));
         return us;
