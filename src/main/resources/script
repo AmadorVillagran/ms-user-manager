@@ -24,9 +24,15 @@ INSERT INTO profile (id, name, description) VALUES
 ALTER TABLE "user"
 ADD COLUMN lastLogin DATE;
 
-INSERT INTO "user" (name, email, password, phone, profile_id)
-VALUES ('master', 'master@email.com', '12345', '12345', 1);
-
 ALTER TABLE "user"
 ADD COLUMN status VARCHAR(50);
+
+ALTER TABLE "user"
+ADD COLUMN datecreate TIMESTAMP,
+ADD COLUMN datemodified TIMESTAMP
+
+INSERT INTO "user"
+(name, email, password, birthday,phone, profile_id,lastlogin ,status,datecreate,datemodified)
+VALUES ('master', 'master@email.com', '$2a$10$pIMK9QiP89ZVplnQCnhrG.VoUGutNe3AyAtG4VbAl0zc2L0COEbdm',
+'2016-03-17 18:34:00.000','12345', 1,CURRENT_DATE, 'ACTIVE', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP);
 
